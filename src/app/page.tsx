@@ -30,7 +30,7 @@ export default function Home() {
     },
     {
       text: "ZKPunk.",
-      className: "text-blue-500 dark:text-blue-500",
+      className: "text-blue-500",
     },
   ];
 
@@ -49,13 +49,13 @@ export default function Home() {
           <div className="flex flex-row gap-4 mt-8">
             <Button
               borderRadius="1.75rem"
-              className="bg-white dark:bg-black text-black dark:text-white border-neutral-200 dark:border-slate-800"
+              className="bg-white text-black border-neutral-200"
             >
               Get Started
             </Button>
             <Button
               borderRadius="1.75rem"
-              className="bg-white dark:bg-black text-black dark:text-white border-neutral-200 dark:border-slate-800"
+              className="bg-white text-black border-neutral-200"
             >
               Documentation
             </Button>

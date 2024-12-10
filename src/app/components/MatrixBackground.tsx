@@ -9,16 +9,20 @@ const MatrixBackground: React.FC = () => {
   useEffect(() => {
     if (!containerRef.current) return;
 
+    // 获取容器的实际尺寸
+    const width = containerRef.current.clientWidth;
+    const height = containerRef.current.clientHeight;
+
     // 初始化场景、相机和渲染器
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(
       75,
-      window.innerWidth / window.innerHeight,
+      width / height,
       0.1,
       1000
     );
     const renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(width, height);
     renderer.setClearColor(0x000000);
     containerRef.current.appendChild(renderer.domElement);
 
@@ -73,20 +77,25 @@ const MatrixBackground: React.FC = () => {
       renderer.render(scene, camera);
     };
 
-    // 处理窗口大小变化
+    // 修改处理窗口大小变化的函数
     const handleResize = () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
+      if (!containerRef.current) return;
+      const width = containerRef.current.clientWidth;
+      const height = containerRef.current.clientHeight;
+      
+      camera.aspect = width / height;
       camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setSize(width, height);
     };
 
     window.addEventListener('resize', handleResize);
     animate();
 
+    const current = containerRef.current;
     // 清理函数
     return () => {
       window.removeEventListener('resize', handleResize);
-      containerRef.current?.removeChild(renderer.domElement);
+      current?.removeChild(renderer.domElement);
       // 清理几何体和材质
       textGroup.traverse((object) => {
         if (object instanceof THREE.Mesh) {
@@ -97,7 +106,17 @@ const MatrixBackground: React.FC = () => {
     };
   }, []);
 
-  return <div ref={containerRef} style={{ width: '100%', height: '100%' }} />;
+  return <div 
+    ref={containerRef} 
+    style={{ 
+      width: '100%', 
+      height: '100%',
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      overflow: 'hidden'
+    }} 
+  />;
 };
 
 export default MatrixBackground;

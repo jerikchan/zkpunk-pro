@@ -41,7 +41,7 @@ export const TypewriterEffect = ({
             <motion.span
               key={`${word}-${idx}`}
               className={cn(
-                "dark:text-white text-black opacity-0 inline-block",
+                "text-white opacity-0 inline-block",
                 word.className
               )}
             >
