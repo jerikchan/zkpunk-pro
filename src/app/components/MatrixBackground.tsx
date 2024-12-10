@@ -3,6 +3,43 @@ import * as THREE from 'three';
 import { FontLoader } from 'three/addons/loaders/FontLoader.js';
 import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
 
+// 定义字符组和权重的接口
+interface CharacterGroup {
+  chars: string[];
+  weight: number;
+}
+
+// 定义字符组和对应的权重
+const characterGroups: CharacterGroup[] = [
+  {
+    chars: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
+    weight: 1
+  },
+  {
+    chars: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(''),
+    weight: 1
+  },
+  {
+    chars: ['ZKPunk'],
+    weight: 2
+  }
+];
+
+// 展开字符和权重
+const expandCharactersAndWeights = (groups: CharacterGroup[]) => {
+  const chars: string[] = [];
+  const weights: number[] = [];
+  
+  groups.forEach(group => {
+    group.chars.forEach(char => {
+      chars.push(char);
+      weights.push(group.weight);
+    });
+  });
+  
+  return { chars, weights };
+};
+
 const MatrixBackground: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -26,11 +63,15 @@ const MatrixBackground: React.FC = () => {
     const createMatrixRain = () => {
       const loader = new FontLoader();
       loader.load('/fonts/helvetiker_regular.typeface.json', (font) => {
-        const characters = [
-          '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
-          'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
-          'zkpunk'
-        ];
+        const { chars, weights } = expandCharactersAndWeights(characterGroups);
+  
+        // 计算累积权重
+        const cumulativeWeights = weights.reduce((acc, weight, index) => {
+          acc.push(weight + (acc[index - 1] || 0));
+          return acc;
+        }, [] as number[]);
+        
+        const totalWeight = cumulativeWeights[cumulativeWeights.length - 1];
 
         const columns = 20;
         const rows = 15;
@@ -38,7 +79,9 @@ const MatrixBackground: React.FC = () => {
 
         for (let i = 0; i < columns; i++) {
           for (let j = 0; j < rows; j++) {
-            const char = characters[Math.floor(Math.random() * characters.length)];
+            const random = Math.random() * totalWeight;
+            const charIndex = cumulativeWeights.findIndex(cumWeight => random < cumWeight);
+            const char = chars[charIndex];
             const geometry = new TextGeometry(char, {
               font: font,
               size: 0.4,
@@ -59,7 +102,7 @@ const MatrixBackground: React.FC = () => {
             text.position.z = Math.random() * -10;
 
             // 添加自定义属性用于动画
-            (text as any).velocity = Math.random() * 0.05 + 0.02;
+            (text as any).velocity = Math.random() * 0.02 + 0.02;
             (text as any).originalY = text.position.y;
 
             textGroup.add(text);
