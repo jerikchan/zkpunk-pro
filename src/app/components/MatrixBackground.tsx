@@ -83,7 +83,7 @@ const MatrixBackground: React.FC = () => {
         if (child.position.y < -10) {
           child.position.y = 10;
           // 随机更新透明度
-          (child.material as THREE.MeshBasicMaterial).opacity = Math.random() * 0.5 + 0.25;
+          ((child as any).material as THREE.MeshBasicMaterial).opacity = Math.random() * 0.5 + 0.25;
         }
       });
 
