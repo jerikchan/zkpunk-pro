@@ -20,18 +20,18 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'ZKPunk',
     description: 'A Punk Org for ZKP R&D',
-    images: '/logo.png',
+    images: 'https://zkpunk-pro.netlify.app/logo.png',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'ZKPunk',
     description: 'A Punk Org for ZKP R&D',
-    images: ['/logo.png'],
+    images: ['https://zkpunk-pro.netlify.app/logo.png'],
   },
   icons: {
-    icon: '/logo.png',
-    shortcut: '/logo.png',
-    apple: '/logo.png',
+    icon: 'https://zkpunk-pro.netlify.app/logo.png',
+    shortcut: 'https://zkpunk-pro.netlify.app/logo.png',
+    apple: 'https://zkpunk-pro.netlify.app/logo.png',
   }
 }
 
