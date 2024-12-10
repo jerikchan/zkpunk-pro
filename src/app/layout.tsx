@@ -14,24 +14,24 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: 'ZKPunk | Zero Knowledge Proof Community',
-  description: 'ZKPunk is a community dedicated to Zero Knowledge Proofs and blockchain privacy technology',
+  title: 'ZKPunk',
+  description: 'A Punk Org for ZKP R&D',
   keywords: 'ZKP, Zero Knowledge Proof, Blockchain, Privacy, Web3',
   openGraph: {
-    title: 'ZKPunk | Zero Knowledge Proof Community',
-    description: 'ZKPunk is a community dedicated to Zero Knowledge Proofs and blockchain privacy technology',
+    title: 'ZKPunk',
+    description: 'A Punk Org for ZKP R&D',
     images: '/logo.png',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'ZKPunk | Zero Knowledge Proof Community',
-    description: 'ZKPunk is a community dedicated to Zero Knowledge Proofs and blockchain privacy technology',
+    title: 'ZKPunk',
+    description: 'A Punk Org for ZKP R&D',
     images: ['/logo.png'],
   },
   icons: {
-    icon: '/favicon.ico',
-    shortcut: '/favicon.ico',
-    apple: '/apple-touch-icon.png',
+    icon: '/logo.png',
+    shortcut: '/logo.png',
+    apple: '/logo.png',
   }
 }
 

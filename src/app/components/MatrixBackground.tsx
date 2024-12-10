@@ -35,10 +35,10 @@ const MatrixBackground: React.FC = () => {
       const loader = new FontLoader();
       loader.load('/fonts/helvetiker_regular.typeface.json', 
         (font) => {
-          const characters = '01';
+          const characters = ['zk', 'punk'];
           
           for(let i = 0; i < 100; i++) {
-            const char = characters.charAt(Math.floor(Math.random() * characters.length));
+            const char = characters[Math.floor(Math.random() * characters.length)];
             const geometry = new TextGeometry(char, {
               font: font,
               size: 0.5,
