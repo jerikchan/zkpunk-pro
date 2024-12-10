@@ -45,6 +45,16 @@ export default function Home() {
               borderRadius="1.5rem"
               className="text-white border-neutral-200 flex items-center gap-1.5 text-sm px-4 py-2"
               as="a"
+              href="https://insights.zkpunk.pro/"
+              target="_blank"
+            >
+              <IoMdBulb className="w-4 h-4" />
+              ZK Insights
+            </Button>
+            <Button
+              borderRadius="1.5rem"
+              className="text-white border-neutral-200 flex items-center gap-1.5 text-sm px-4 py-2"
+              as="a"
               href="https://learn.zkpunk.pro/"
               target="_blank"
             >
@@ -60,16 +70,6 @@ export default function Home() {
             >
               <FaGithub className="w-4 h-4" />
               Github
-            </Button>
-            <Button
-              borderRadius="1.5rem"
-              className="text-white border-neutral-200 flex items-center gap-1.5 text-sm px-4 py-2"
-              as="a"
-              href="https://insights.zkpunk.pro/"
-              target="_blank"
-            >
-              <IoMdBulb className="w-4 h-4" />
-              ZK Insights
             </Button>
           </div>
         </div>
